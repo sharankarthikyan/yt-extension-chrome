@@ -196,6 +196,9 @@
         ul.classList.add("download-option-lists");
         // ul.textContent = "Download";
         for (let i = 0; i < formats.length; i++) {
+            if (!formats[i].url) {
+                formats[i].url = formats[i].signatureCipher.split("&")[2].split("=")[1];
+            }
             var li = `
             <li class="download-option">
                <a href="${formats[i].url}" download>${formats[i].qualityLabel}</a>
