@@ -151,35 +151,46 @@
                        background: #2980b9;
                        color: white;
                        padding: 10px 20px;
-                       list-style-type: none;
                        pointer-events: auto !important;
                        cursor: pointer;
-                       max-height: 600px;
-                       overflow: auto;
                        z-index: 200;
+                       font-size: 2rem;
+                       font-weight: bold;
                    }
 
-                   .download-button-container>li {
+                   .download-button-container>ul {
                        display: none;
+                       position: absolute;
+                       top: 100%;
+                       left: 0;
+                       overflow: auto;
+                       height: 500px;
                    }
 
-                   .download-button-container:hover .download-option{
+                   .download-button-container:hover .download-option-lists {
                       display: block;
                    }
 
-                   .download-option {
-                      display: inline-block;
+                   .download-option a {
+                      display: block;
                       padding: 10px 20px;
                       background: #3498db;
                       color: white;
+                      text-decoration: none;
+                      font-size: 2rem;
+                      font-weight: 400;
+                      text-align: center;
                    }
 
         </style>
         
         `
+        var div = document.createElement("div");
+        div.classList.add("download-button-container");
+        div.textContent = "Download";
         var ul = document.createElement("ul");
-        ul.classList.add("download-button-container");
-        ul.textContent = "Download";
+        ul.classList.add("download-option-lists");
+        // ul.textContent = "Download";
         for (let i = 0; i < formats.length; i++) {
             var li = `
             <li class="download-option">
@@ -189,7 +200,8 @@
             ul.innerHTML += li;
         }
         ul.innerHTML += styleElement;
-        videoContainer.appendChild(ul);
+        div.appendChild(ul);
+        videoContainer.appendChild(div);
         // container.appendChild(ul);
     } catch (err) {
         let args = findJSON('watch.html', 'player_response', body, /\bytplayer\.config\s*=\s*{/, '</script>', '{');
