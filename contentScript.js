@@ -182,6 +182,10 @@
                       text-align: center;
                    }
 
+                   .download-option a:hover {
+                      background: #2980b9;
+                   }
+
         </style>
         
         `
