@@ -1,7 +1,7 @@
-(async () => {
+var urlProcess = async () => {
     try {
         var responsedata;
-        await fetch(`https://yt-server-live.herokuapp.com/urls?id=${new URL(location.href).searchParams.get("v")}`).then(res => res.json()).then(_data => { 
+        await fetch(`https://yt-server-live.herokuapp.com/urls?id=${new URL(location.href).searchParams.get("v")}`).then(res => res.json()).then(_data => {
             responsedata = _data;
         });
         var videoContainer = document.getElementsByClassName("html5-video-player")[0];
@@ -73,4 +73,12 @@
         console.error(err.message);
     }
 
-})()
+}
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    if (request.message === 'onurlchanged') {
+        urlProcess();
+    }
+
+});
+urlProcess();
