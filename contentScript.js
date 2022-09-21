@@ -61,7 +61,7 @@ var urlProcess = async () => {
         for (let i = 0; i < formats.length; i++) {
             var li = `
             <li class="download-option">
-               <a href="${formats[i].url}" download>${formats[i].qualityLabel}</a>
+               <a href="${formats[i].url}" target="_blank" download>${formats[i].qualityLabel}</a>
             </li>   
             `;
             ul.innerHTML += li;
