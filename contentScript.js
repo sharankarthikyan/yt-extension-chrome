@@ -1,4 +1,8 @@
 var urlProcess = async () => {
+    var ele = await document.querySelector(".download-button-container");
+    if (ele) {
+        ele.remove();
+    }
     try {
         var responsedata;
         await fetch(`https://yt-server-live.herokuapp.com/urls?id=${new URL(location.href).searchParams.get("v")}`).then(res => res.json()).then(_data => {
@@ -28,6 +32,7 @@ var urlProcess = async () => {
                        left: 0;
                        overflow: auto;
                        height: 500px;
+                       width: 100%;
                    }
 
                    .download-button-container:hover .download-option-lists {
@@ -58,6 +63,11 @@ var urlProcess = async () => {
         var ul = document.createElement("ul");
         ul.classList.add("download-option-lists");
         var formats = responsedata.data.info.formats;
+        formats = formats.filter((item) => {
+            if (item.mimeType.includes("video/mp4") && item.audioChannels) {
+                return true;
+            }
+        })
         for (let i = 0; i < formats.length; i++) {
             var li = `
             <li class="download-option">
