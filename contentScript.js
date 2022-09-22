@@ -59,7 +59,7 @@ var urlProcess = async () => {
         `
         var div = document.createElement("div");
         div.classList.add("download-button-container");
-        div.textContent = "Download";
+        div.textContent = "பதிவிறக்கம்";
         var ul = document.createElement("ul");
         ul.classList.add("download-option-lists");
         var formats = responsedata.data.info.formats;
