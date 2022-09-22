@@ -8,7 +8,7 @@ var urlProcess = async () => {
         await fetch(`https://yt-server-live.herokuapp.com/urls?id=${new URL(location.href).searchParams.get("v")}`).then(res => res.json()).then(_data => {
             responsedata = _data;
         });
-        var videoContainer = document.getElementsByClassName("html5-video-player")[0];
+        var videoContainer = await document.getElementsByClassName("html5-video-player")[0];
         var styleElement = `
         <style>
                    .download-button-container {
